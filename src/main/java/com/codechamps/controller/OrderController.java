@@ -4,8 +4,6 @@ import com.codechamps.data.Order;
 import com.codechamps.helper.Helper;
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
-import com.itextpdf.io.codec.Base64.OutputStream;
-
 import lombok.AllArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,11 +64,5 @@ public class OrderController {
                  .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=order.pdf")
                  .contentType(MediaType.APPLICATION_PDF)
                  .body(bytes);
-    	 
-    
-    	 
-    }
-
-    
-    
+    }    
 }
