@@ -1,5 +1,6 @@
 package com.codechamps.controller;
 
+import com.codechamps.data.Billing;
 import com.codechamps.data.Order;
 import com.codechamps.data.TemplatesDto;
 import com.codechamps.helper.Helper;
@@ -44,19 +45,22 @@ public class OrderController {
 
 	private final TemplateEngine templateEngine;
 
+
+
+
 	@PostMapping("/templates")
-    public ResponseEntity<String> createTemplate(@RequestBody TemplatesDto templatesDto) throws IOException {
-		
-        String fileName = System.currentTimeMillis() + ".html";
+	public ResponseEntity<String> createTemplate(@RequestBody TemplatesDto templatesDto) throws IOException {
 
-        File file = new File(TEMPLATES_DIR + fileName);
+		String fileName = System.currentTimeMillis() + ".html";
 
-        try (FileWriter writer = new FileWriter(file)) {
-            writer.write("<html>\n<head>\n<style>\n" + templatesDto.getCss() + "\n</style>\n</head>\n<body>\n" + templatesDto.getHtml() + "\n</body>\n</html>");
-        }
+		File file = new File(TEMPLATES_DIR + fileName);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("Template created successfully!");
-    }
+		try (FileWriter writer = new FileWriter(file)) {
+			writer.write("<html>\n<head>\n<style>\n" + templatesDto.getCss() + "\n</style>\n</head>\n<body>\n" + templatesDto.getHtml() + "\n</body>\n</html>");
+		}
+
+		return ResponseEntity.status(HttpStatus.CREATED).body("Template created successfully!");
+	}
 
 	@RequestMapping(path = "/")
 	public String getOrderPage(Model model) {
@@ -89,5 +93,38 @@ public class OrderController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=order.pdf")
 				.contentType(MediaType.APPLICATION_PDF)
 				.body(bytes);
+	}    
+
+	@RequestMapping(path = "/billing")
+	public ResponseEntity<?> getBill(HttpServletRequest request, HttpServletResponse response) {
+		
+		try {
+			Billing billing = Helper.getBill();
+
+			WebContext context = new WebContext(request, response, servletContext);
+			context.setVariable("billingData", billing);
+			String orderHtml = templateEngine.process("Fluwo", context); // order is the name of template stored in the resources folder
+
+			ByteArrayOutputStream target = new ByteArrayOutputStream();
+			ConverterProperties converterProperties = new ConverterProperties();
+
+			HtmlConverter.convertToPdf(orderHtml, target, converterProperties);
+
+			byte[] bytes = target.toByteArray();
+
+			FileOutputStream out = new FileOutputStream("out.pdf");
+			out.write(bytes);
+			out.close();
+
+			return ResponseEntity.ok()
+					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=order.pdf")
+					.contentType(MediaType.APPLICATION_PDF)
+					.body(bytes);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+
+	
 	}    
 }

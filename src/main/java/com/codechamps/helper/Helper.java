@@ -59,4 +59,19 @@ public class Helper {
         order.setPayment(payment);
         return order;
     }
+    
+    public static Billing getBill() {
+    	Address address = new Address();
+    	address.setCity("Hamburg");
+    	address.setStreet("Streetee");
+    	address.setZipCode("11223344");
+    	address.setCareOf("Faheem");
+    	Billing bill = new Billing();
+    	bill.setEndCustomerFirstName("Faheem");
+    	bill.setEndCustomerLastName("Bhatti ");
+    	bill.setEndCustomerAddress(address);
+    	
+    	return bill;
+    }
+    
 }
