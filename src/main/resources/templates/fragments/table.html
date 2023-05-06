@@ -1,0 +1,20 @@
+<table id="table-data" th:fragment="billingtable">
+    <tr>
+        <th>Nr.</th>
+        <th>Bezeichnung</th>
+        <th>Meng</th>
+        <th>Netto</th>
+        <th>MwSt. Satz</th>
+        <th>MwSt. Betrag</th>
+        <th>Brutto</th>
+    </tr>
+    <tr  th:each="star:${#numbers.sequence(0, 1, 1)}">
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test</td>
+    </tr>
+</table>

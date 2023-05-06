@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <style data-tag="reset-style-sheet">
+      html {
+        line-height: 1.15;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+        border-width: 0;
+        border-style: solid;
+      }
+      img {
+        display: block;
+      }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style: normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" data-tag="font" />
+    <style>
+        #table-data {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        #table-data td, #table-data th {
+          padding: 5px;
+        }
+
+        #table-data tr:last-child td{
+            border-bottom: 1px solid #0f0f0f;
+        }
+        
+        #table-data th {
+          padding-top: 8px;
+          padding-bottom: 8px;
+          text-align: left;
+          background-color: #cccccc;
+          color: black;
+        }
+
+        #another-table-data {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+          border: 1px solid;
+        }
+
+        #another-table-data th {
+          padding-top: 8px;
+          padding-bottom: 8px;
+          text-align: left;
+          background-color: #cccccc;
+          color: black;
+        }
+
+        #another-table-data td, #another-table-data th {
+          padding: 5px;
+        }
+
+        #another-table-data tr:last-child td{
+            border-bottom: 1px solid #0f0f0f;
+        }
+        </style>
+        <style>
+            #footer {
+                position: running(footer);
+            }
+            #header {
+                position: running(header);
+            }
+            @page {
+                @bottom-left {
+                    content: element(footer);
+                }
+            }  
+            @page {
+                @top-right {
+                    content: element(header);
+                }
+            } 
+            @page {
+                margin-top: 1.5cm;
+            } 
+            
+        </style>
+  </head>
+  <body>
+    <div>
+      <style>
+        
+        .home-image {
+            width: 92px;
+            left: 532px;
+            top: 12px;
+            position: relative;
+        }
+
+        .home-container2 {
+            width: 254px;
+            height: 4px;
+            margin-top: 12px;
+            margin-left: 14px;
+        }
+        .home-text {
+            font-size: 12px;
+        }
+        .home-container3 {
+            width: 224px;
+            height: 179px;
+            margin-top: 1px;
+            right: 16px;
+            float: right;
+        }
+        .home-text01 {
+            font-size: 12px;
+            align-self: flex-end;
+            margin-right: 64px;
+        }
+        .home-text13 {
+            margin-left: 48px;
+        }
+        .home-text14 {
+            float: right;
+            margin-right: 44px;
+            position: relative;
+        }
+    </style>
+        <div th:insert="fragments/footer :: footer"></div>
+        <div th:insert="fragments/header :: header"></div>
+        <div class="home-container1">
+          <div class="home-container2">
+            <span class="home-text">FLÜWO Bauen Wohnen eG</span>
+          </div>
+          <div class="home-container3">
+            <span class="home-text01">
+              <span>FLÜWO Bauen Wohnen eG</span>
+              <br />
+              <span>Löffelstr. 22–24</span>
+              <br />
+              <span>70597 Stuttgart</span>
+              <br />
+              <span>Postfach 70 02 61</span>
+              <br />
+              <span><b>Ihr&nbsp;Ansprechpartner</b></span>
+              <br />
+              <span>&lt;&lt; Name &gt;&gt;</span>
+              <br />
+              <span>&lt;&lt; Position &gt;&gt;</span>
+              <br />
+              <span>&lt;&lt; Phone &gt;&gt;</span>
+              <br />
+              <span>&lt;&lt; Email &gt;&gt;</span>
+
+              <br />
+              <span class="home-text14">&lt;&lt;billGenerationDate&gt;&gt;</span>
+            </span>
+          </div>
+        </div>
+        <div style="margin-top: 142px;">
+            <!--<span class="home-text13">&lt;&lt;City&gt;&gt;</span>
+            <span class="home-text14">&lt;&lt;billGenerationDate&gt;&gt;</span> -->
+            <span>
+            <br />
+            <br />
+            <span><b>Rechnung Nr. &lt;&lt;billNumber&gt;&gt;</b> </span>
+            <br />
+            <br />
+            <span th:text="'Guten Tag ' + ${billingData.endCustomerFirstName + ' ' + billingData.endCustomerLastName + ','}" >Guten Tag «firstName» «lastName», </span>
+            <br />
+            <br />
+            <span>nachfolgend finden Sie Ihre Rechnung und eine detaillierte Übersicht der Einzelladevorgänge für den Zeitraum &lt;&lt;startDate&gt;&gt;- &lt;&lt;endDate&gt;&gt;. </span>
+            <br />
+            <span>Wir bitten um Überweisung des Gesamtbetrags in Höhe von &lt;&lt;totalTaxedCost&gt;&gt; Euro. </span>
+            <br />
+            </span>
+        </div>
+        <br />
+        <div th:replace="fragments/table :: billingtable"></div>
+        <div>
+            <span><b>Gesamtbetrag</b></span>
+            <span style="float:right"><b>€&lt;&lt;value&gt;&gt;</b></span>
+        </div>
+        <div style="margin-top: 12px; width: 100%">
+            <br />
+            <span>Bitte überweisen Sie den Betrag in Höhe von &lt;&lt;totalTaxedCost&gt;&gt; Euro bis zum &lt;&lt;billGenerationDate&gt;&gt; auf das Konto bei der &lt;&lt;operator_bank&gt;&gt; BIC: &lt;&lt;operator_BIC&gt;&gt; IBAN: &lt;&lt;operator_IBAN&gt;&gt;.</span>
+            <br />
+            <br />
+            <span>Freundliche Grüße</span>
+            <br />
+            <span>FLÜWO Bauen Wohnen eG</span>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            </span>
+        </div>
+
+        <div style="margin-top: 12px; width: 100%">
+            <br />
+            <span><b>Übersicht Einzelladevorgänge</b></span>
+            <br />
+            <span>Ihre Ladevorgänge in &lt;&lt;locationAddress&gt;&gt; sind wie folgt:</span>
+            <br />
+            <br />
+            <table id="another-table-data">
+                <tr>
+                    <th>Transaktions-ID</th>
+                    <th>Parkplatz</th>
+                    <th>Start</th>
+                    <th>Ende</th>
+                    <th>Zähler-Start</th>
+                    <th>Zähler-Stop</th>
+                    <th>Menge (kWh)</th>
+                    <th>Ladekost</th>
+                </tr>
+                <tr  th:each="star:${#numbers.sequence(0, 684, 1)}">
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                    <td>Test</td>
+                </tr>
+            </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

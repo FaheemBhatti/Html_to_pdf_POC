@@ -20,7 +20,6 @@ public class DocToHtmlConverterController {
 			String html = result.getValue(); // The generated HTML
 			Set<String> warnings = result.getWarnings(); // Any warnings during convers
 			return html;
-	
 		} catch (Exception e) {
 			throw new NullPointerException();
 		}

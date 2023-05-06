@@ -103,7 +103,7 @@ public class OrderController {
 
 			WebContext context = new WebContext(request, response, servletContext);
 			context.setVariable("billingData", billing);
-			String orderHtml = templateEngine.process("Fluwo", context); // order is the name of template stored in the resources folder
+			String orderHtml = templateEngine.process("Fluwo13", context); // order is the name of template stored in the resources folder
 
 			ByteArrayOutputStream target = new ByteArrayOutputStream();
 			ConverterProperties converterProperties = new ConverterProperties();
@@ -123,8 +123,6 @@ public class OrderController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
-
-	
+		return null;	
 	}    
 }
