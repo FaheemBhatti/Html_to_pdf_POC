@@ -1,6 +1,7 @@
 package com.codechamps.helper;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,7 +117,16 @@ public class Helper {
     	bill.setEndCustomerFirstName("Faheem");
     	bill.setEndCustomerLastName("Bhatti ");
     	bill.setEndCustomerAddress(address);
-    	
+    	bill.setBillingNumber("902-0030-754");
+    	bill.setBillGenerationDate(LocalDateTime.now());
+    	bill.setEndDate(LocalDateTime.now());
+    	bill.setStartDate(LocalDateTime.of(12, 02, 14, 0, 0));
+    	bill.setTotalTaxedCost(7570.5d);
+    	bill.setNetFixCost(75d);
+    	bill.setTaxFixCost(42d);
+    	bill.setTotalEnergyLoaded(555f);
+    	bill.setNetVarCost(524d);
+    	bill.setTaxVarCost(36d);
     	return bill;
     }
     

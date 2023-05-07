@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Billing {
 
-
 	private String id;
 	private Double taxedVarCost;
 	private Double netVarCost;
@@ -27,9 +26,8 @@ public class Billing {
 	private String billingNumber;
 	private String billingPdfName;
 	private Float totalEnergyLoaded;
-	
 	private String cpoId;
-
+	private LocalDateTime billGenerationDate;
 	private String endCustomerId;
 	private String contractKey;
 	private String endCustomerFirstName;

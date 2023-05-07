@@ -175,25 +175,24 @@
               <span>&lt;&lt; Email &gt;&gt;</span>
 
               <br />
-              <span class="home-text14">&lt;&lt;billGenerationDate&gt;&gt;</span>
+              <span class="home-text14" th:text="${billingData.billGenerationDate}" >&lt;&lt;billGenerationDate&gt;&gt;</span>
             </span>
           </div>
         </div>
         <div style="margin-top: 142px;">
-            <!--<span class="home-text13">&lt;&lt;City&gt;&gt;</span>
-            <span class="home-text14">&lt;&lt;billGenerationDate&gt;&gt;</span> -->
             <span>
             <br />
             <br />
-            <span><b>Rechnung Nr. &lt;&lt;billNumber&gt;&gt;</b> </span>
+            <span style="font-weight: bold;" th:text= "'Rechnung Nr.' + ${billingData.billingNumber}"><b>Rechnung Nr. &lt;&lt;billNumber&gt;&gt;</b> </span>
             <br />
             <br />
             <span th:text="'Guten Tag ' + ${billingData.endCustomerFirstName + ' ' + billingData.endCustomerLastName + ','}" >Guten Tag «firstName» «lastName», </span>
             <br />
             <br />
-            <span>nachfolgend finden Sie Ihre Rechnung und eine detaillierte Übersicht der Einzelladevorgänge für den Zeitraum &lt;&lt;startDate&gt;&gt;- &lt;&lt;endDate&gt;&gt;. </span>
+            <span>nachfolgend finden Sie Ihre Rechnung und eine detaillierte Übersicht der Einzelladevorgänge für den Zeitraum </span> 
+            <span th:text= "${billingData.startDate} + ' - ' + ${billingData.endDate}"> &lt;&lt;startDate&gt;&gt;- &lt;&lt;endDate&gt;&gt;. </span>
             <br />
-            <span>Wir bitten um Überweisung des Gesamtbetrags in Höhe von &lt;&lt;totalTaxedCost&gt;&gt; Euro. </span>
+            <span th:text= "'Wir bitten um Überweisung des Gesamtbetrags in Höhe von ' + ${billingData.totalTaxedCost} + ' Euro'"> &lt;&lt;totalTaxedCost&gt;&gt; Euro. </span>
             <br />
             </span>
         </div>
@@ -201,7 +200,7 @@
         <div th:replace="fragments/table :: billingtable"></div>
         <div>
             <span><b>Gesamtbetrag</b></span>
-            <span style="float:right"><b>€&lt;&lt;value&gt;&gt;</b></span>
+            <span style="float:right" th:text="${billingData.totalTaxedCost}"><b>€&lt;&lt;value&gt;&gt;</b></span>
         </div>
         <div style="margin-top: 12px; width: 100%">
             <br />

@@ -8,13 +8,22 @@
         <th>MwSt. Betrag</th>
         <th>Brutto</th>
     </tr>
-    <tr  th:each="star:${#numbers.sequence(0, 1, 1)}">
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test</td>
+    <tr>
+        <td>1</td>
+        <td>Nutzungsbetrag</td>
+        <td>1</td>
+        <td th:text="${billingData.netFixCost}">Test </td>
+        <td>&lt;&lt;taxFixPercentage;&gt;</td>
+        <td th:text="${billingData.taxFixCost}">Test </td>
+        <td>&lt;&lt;totalFixCost;&gt;</td>
+    </tr>
+      <tr>
+      <td>2</td>
+        <td>Nutzungsbetrag</td>
+        <td th:text="${billingData.totalEnergyLoaded}">1</td>
+        <td th:text="${billingData.netVarCost}">Test </td>
+        <td>&lt;&lt;taxVarPercentage;&gt;</td>
+        <td th:text="${billingData.taxVarCost}">Test </td>
+        <td>&lt;&lt;totalVarCost;&gt;</td>
     </tr>
 </table>
